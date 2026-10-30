@@ -26,6 +26,7 @@ import mujoco
 import numpy as np
 
 DECK_INSERT = 'device-designer/models/opentrons_flex/meshes/deck_insert.obj'
+LAB_SENTRY = Path(__file__).resolve().parents[2] / 'third_party' / 'lab-sentry'  # submodule
 OPENTRONS_POCKET = (0.128, 0.086)    # slot boundingBox in Opentrons' ot3_standard.json
 
 # Corning 96 Well Plate 360 uL Flat: SBS footprint, skirt and inset upper body.
@@ -310,7 +311,7 @@ def grid(step, radius):
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--lab-sentry', default='D:/lab-sentry', help='lab-sentry checkout')
+    parser.add_argument('--lab-sentry', default=LAB_SENTRY, help='lab-sentry checkout')
     parser.add_argument('--pocket', choices=['opentrons', 'labsentry'], default='opentrons')
     parser.add_argument('--chamfer', type=float, default=0.0, help='rib lead-in, mm')
     parser.add_argument('--error', type=float, default=2.0, help='largest xy belief error, mm')

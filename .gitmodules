@@ -1,0 +1,3 @@
+[submodule "third_party/lab-sentry"]
+	path = third_party/lab-sentry
+	url = https://github.com/simoncoelho/lab-sentry.git

@@ -4,14 +4,16 @@ A Franka Panda places a Corning 96-well plate into one Opentrons Flex deck slot.
 the starting scene for training a contact-based insertion policy instead of grid search.
 
 ```bash
+git submodule update --init third_party/lab-sentry   # or clone with --recursive
 pip install -e . robot_descriptions
 python examples/flex_slot/flex_slot.py --view                         # watch one episode
 python examples/flex_slot/flex_slot.py --episodes 20 --chamfer 2      # success rates
 ```
 
 - **Slot.** The corner locators are read from lab-sentry's Flex model
-  (`device-designer/models/opentrons_flex/meshes/deck_insert.obj`; pass its checkout with
-  `--lab-sentry`). Every rib, wall and corner pad is a box or convex prism, so each is one
+  (`device-designer/models/opentrons_flex/meshes/deck_insert.obj`), a git submodule at
+  `third_party/lab-sentry`; `--lab-sentry` points at another checkout. lab-sentry is
+  Simon Coelho's and is linked, not copied. Every rib, wall and corner pad is a box or convex prism, so each is one
   convex geom. `--pocket opentrons` (default) moves the corners in to the 128 x 86 mm slot
   of Opentrons' deck definition; `--pocket labsentry` keeps the 140 x 93 mm drawn pocket.
   `--chamfer` bevels the rib tops. The real clips are spring-loaded and their dimensions
